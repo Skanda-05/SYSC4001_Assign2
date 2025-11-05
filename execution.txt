@@ -1,0 +1,10 @@
+0, 50, CPU
+50, 1, switch to kernel mode
+51, 20, context saved
+71, 1, find vector 7 in memory position 0x000E
+72, 1, load address 0X00BD into the PC
+73, 72, call device driver
+145, 40, Transfer data
+185, 40, Check for errors
+225, 1, IRET
+226, 172, end of I/O 7: interrupt
