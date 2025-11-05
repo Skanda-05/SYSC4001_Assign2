@@ -3,6 +3,9 @@
  * @file interrupts.cpp
  * @author Sasisekhar Govind
  *
+ * 
+ * @version 2.0
+ * @author Aaron Fisher & Shrisakanda Nagendra
  */
 
 #include<interrupts.hpp>
@@ -13,13 +16,15 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
     std::string execution = "";  //!< string to accumulate the execution output
     std::string system_status = "";  //!< string to accumulate the system status output
     int current_time = time;
+
+    std::string external; //String to store single line of execution file
     
-    // PART i : Memory Partitions: fixed partitions
+    // PART i : Memory Partitions : fixed partitions
     struct FixedPartition {
         unsigned int partitionNumber;
         unsigned int size;
         std::string code;
-    }
+    };
     struct FixedPartition memoryPartition[6];
     memoryPartition[0] = {1,40,"free"};
     memoryPartition[1] = {2,25,"free"};
@@ -28,7 +33,7 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
     memoryPartition[4] = {5,8,"free"};
     memoryPartition[5] = {6,2,"free"};
 
-    // Part ii : PCB:
+    // Part ii : PCB :
     struct PCBStructure {
         unsigned int pid;
         std::string programName;
@@ -47,7 +52,7 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
         unsigned int programSize;
         unsigned int base;
         unsigned int limit;
-    }
+    };
     struct PCBStructure PCB[100];
     for (int current ; current < (sizeof(PCB) / sizeof(PCB[0])) ; current++){
         PCB[current].pid = current;
