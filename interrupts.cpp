@@ -47,6 +47,10 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
         
         unsigned int processTimeRemaining;
 
+        //Parent Child Link
+        unsigned int parent = NULL;
+        unsigned int child = NULL; 
+
         //Memory location
         unsigned int partition;
         unsigned int programSize;
