@@ -13,6 +13,50 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
     std::string execution = "";  //!< string to accumulate the execution output
     std::string system_status = "";  //!< string to accumulate the system status output
     int current_time = time;
+    
+    // PART i : Memory Partitions: fixed partitions
+    struct FixedPartition {
+        unsigned int partitionNumber;
+        unsigned int size;
+        std::string code;
+    }
+    struct FixedPartition memoryPartition[6];
+    memoryPartition[0] = {1,40,"free"};
+    memoryPartition[1] = {2,25,"free"};
+    memoryPartition[2] = {3,15,"free"};
+    memoryPartition[3] = {4,10,"free"};
+    memoryPartition[4] = {5,8,"free"};
+    memoryPartition[5] = {6,2,"free"};
+
+    // Part ii : PCB:
+    struct PCBStructure {
+        unsigned int pid;
+        std::string programName;
+        std::string state;
+        unsigned int PC;
+        unsigned int registers; //SHOULD THIS BE AN ARRAY TO STORE REGISTERS?????????????????????????????????????????????????????????????????????
+        
+        //IO
+        std::string IO[10];
+        std::string openFiles[10];
+        
+        unsigned int processTimeRemaining;
+
+        //Memory location
+        unsigned int partition;
+        unsigned int programSize;
+        unsigned int base;
+        unsigned int limit;
+    }
+    struct PCBStructure PCB[100];
+    for (int current ; current < (sizeof(PCB) / sizeof(PCB[0])) ; current++){
+        PCB[current].pid = current;
+    }
+
+    PCB[0].programName = "init";
+    PCB[0].partition = 6;
+    PCB[0].programSize = 1;
+    memoryPartition[5].code = "init";
 
     //parse each line of the input trace file. 'for' loop to keep track of indices.
     for(size_t i = 0; i < trace_file.size(); i++) {
