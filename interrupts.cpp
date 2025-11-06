@@ -51,7 +51,25 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             ///////////////////////////////////////////////////////////////////////////////////////////
             //Add your FORK output here
 
+            int fork_duration = duration_intr;
+            execution += std::to_string(current_time) + ", " + std::to_string(fork_duration) + ", cloning the PCB\n";
+            current_time += fork_duration;
 
+            //PID(_pid), PPID(_ppid), program_name(_pn), size(_size), partition_number(_part_num) {}
+            PCB child(current.PID + 1, current.PID, current.program_name, current.size, -1);
+            if(!allocate_memory(&child)) {
+                std::cerr << "ERROR! Memory allocation failed!" << std::endl;
+            }
+
+            wait_queue.push_back(current); //just sending current to back of the waiting queue since child will run now "ONLY 1 CPU"
+            //PARENT SHOULD ALWAYS WAIT FOR CHILD PROCESS'S TO COMPLETE
+
+            system_status += "time: " + std::to_string(current_time) + "; current trace: FORK, " + std::to_string(duration_intr) + "\n";
+            system_status += print_PCB(child, wait_queue);
+
+            execution += std::to_string(current_time) + ", 0, scheduler called\n";
+            execution += std::to_string(current_time) + ", 1, IRET\n";
+            current_time += 1;
 
             ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -101,8 +119,18 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             //                                wait_queue);
 
             //BELIEVE THIS IS THE CODE REQUIRED FOR THE RECURRSIVE-----------------------------------------------------------------------------------------------------------------
-            //auto [child_execution, child_status, total_time] = simulate_trace(child_trace, current_time, vectors, delays, external_files, child, wait_queue);
+            auto [child_execution, child_status, total_time] = simulate_trace(child_trace, current_time, vectors, delays, external_files, child, wait_queue);
 
+            execution += child_execution;
+            system_status += child_status;
+            current_time = total_time;
+
+            free_memory(&child);
+
+            //take the parent out of the wait queue and restore it
+            current = wait_queue.back();
+            wait_queue.pop_back();
+            
             ///////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -113,7 +141,6 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
 
             ///////////////////////////////////////////////////////////////////////////////////////////
             //Add your EXEC output here
-
 
 
             ///////////////////////////////////////////////////////////////////////////////////////////
@@ -130,7 +157,11 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             ///////////////////////////////////////////////////////////////////////////////////////////
             //With the exec's trace (i.e. trace of external program), run the exec (HINT: think recursion)
 
-
+            auto [exec_execution, exec_status, total_time] = simulate_trace(exec_traces, current_time, vectors, delays, external_files, current, wait_queue);
+            
+            execution += exec_execution;
+            system_status += exec_status;
+            current_time = exec_time;
 
             ///////////////////////////////////////////////////////////////////////////////////////////
 
