@@ -92,7 +92,16 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             ///////////////////////////////////////////////////////////////////////////////////////////
             //With the child's trace, run the child (HINT: think recursion)
 
+            //auto [execution, system_status, _] = simulate_trace(   trace_file, 
+            //                                0, 
+            //                                vectors, 
+            //                                delays,
+            //                                external_files, 
+            //                                current, 
+            //                                wait_queue);
 
+            //BELIEVE THIS IS THE CODE REQUIRED FOR THE RECURRSIVE-----------------------------------------------------------------------------------------------------------------
+            //auto [child_execution, child_status, total_time] = simulate_trace(child_trace, current_time, vectors, delays, external_files, child, wait_queue);
 
             ///////////////////////////////////////////////////////////////////////////////////////////
 
