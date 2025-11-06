@@ -141,6 +141,26 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
 
             ///////////////////////////////////////////////////////////////////////////////////////////
             //Add your EXEC output here
+            int exec_duration = duration_intr;
+
+            int new_size = get_size(program_name, external_files);
+            if  (new_size == -1) {
+                std::cerr << "ERROR! Program not found!" << std::endl;
+            }
+            
+            execution += std::to_string(current_time) + "," + std::to_string(exec_duration) + "The program size is " + std::string(new_size) + "MB \n"; 
+            current_time += exec_duration;
+
+            free(&current);
+
+            current.program_name = program_name;
+            current.size = new_size;
+
+            if (!allocate_memory(&current)) {
+                std::cerr << "ERROR! Memory allocation failed!" << program_name << std::endl;
+                exit(1);
+             }
+
 
 
             ///////////////////////////////////////////////////////////////////////////////////////////
@@ -196,7 +216,7 @@ int main(int argc, char** argv) {
     std::vector<PCB> wait_queue;
 
     /******************ADD YOUR VARIABLES HERE*************************/
-
+    
 
     /******************************************************************/
 
