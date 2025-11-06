@@ -11,3 +11,102 @@
 228, 1, load address 0X00BD into the PC
 229, 152, ENDIO ISR(ADD STEPS HERE)
 381, 1, IRET
+382, 1, switch to kernel mode
+383, 10, context saved
+393, 1, find vector 2 in memory position 0x0004
+394, 1, load address 0X0695 into the PC
+395, 0, scheduler called
+395, 1, IRET
+396, 0, CPU Burst
+396, 1, switch to kernel mode
+397, 10, context saved
+407, 1, find vector 7 in memory position 0x000E
+408, 1, load address 0X00BD into the PC
+409, 152, SYSCALL ISR (ADD STEPS HERE)
+561, 1, IRET
+562, 1, switch to kernel mode
+563, 10, context saved
+573, 1, find vector 7 in memory position 0x000E
+574, 1, load address 0X00BD into the PC
+575, 152, ENDIO ISR(ADD STEPS HERE)
+727, 1, IRET
+728, 1, switch to kernel mode
+729, 10, context saved
+739, 1, find vector 2 in memory position 0x0004
+740, 1, load address 0X0695 into the PC
+741, 0, scheduler called
+741, 1, IRET
+742, 0, CPU Burst
+742, 1, switch to kernel mode
+743, 10, context saved
+753, 1, find vector 7 in memory position 0x000E
+754, 1, load address 0X00BD into the PC
+755, 152, SYSCALL ISR (ADD STEPS HERE)
+907, 1, IRET
+908, 1, switch to kernel mode
+909, 10, context saved
+919, 1, find vector 7 in memory position 0x000E
+920, 1, load address 0X00BD into the PC
+921, 152, ENDIO ISR(ADD STEPS HERE)
+1073, 1, IRET
+1074, 1, switch to kernel mode
+1075, 10, context saved
+1085, 1, find vector 2 in memory position 0x0004
+1086, 1, load address 0X0695 into the PC
+1087, 0, scheduler called
+1087, 1, IRET
+1088, 0, CPU Burst
+1088, 1, switch to kernel mode
+1089, 10, context saved
+1099, 1, find vector 7 in memory position 0x000E
+1100, 1, load address 0X00BD into the PC
+1101, 152, SYSCALL ISR (ADD STEPS HERE)
+1253, 1, IRET
+1254, 1, switch to kernel mode
+1255, 10, context saved
+1265, 1, find vector 7 in memory position 0x000E
+1266, 1, load address 0X00BD into the PC
+1267, 152, ENDIO ISR(ADD STEPS HERE)
+1419, 1, IRET
+1420, 1, switch to kernel mode
+1421, 10, context saved
+1431, 1, find vector 2 in memory position 0x0004
+1432, 1, load address 0X0695 into the PC
+1433, 0, scheduler called
+1433, 1, IRET
+1434, 0, CPU Burst
+1434, 1, switch to kernel mode
+1435, 10, context saved
+1445, 1, find vector 7 in memory position 0x000E
+1446, 1, load address 0X00BD into the PC
+1447, 152, SYSCALL ISR (ADD STEPS HERE)
+1599, 1, IRET
+1600, 1, switch to kernel mode
+1601, 10, context saved
+1611, 1, find vector 7 in memory position 0x000E
+1612, 1, load address 0X00BD into the PC
+1613, 152, ENDIO ISR(ADD STEPS HERE)
+1765, 1, IRET
+1766, 1, switch to kernel mode
+1767, 10, context saved
+1777, 1, find vector 2 in memory position 0x0004
+1778, 1, load address 0X0695 into the PC
+1779, 0, scheduler called
+1779, 1, IRET
+1780, 0, CPU Burst
+1780, 1, switch to kernel mode
+1781, 10, context saved
+1791, 1, find vector 7 in memory position 0x000E
+1792, 1, load address 0X00BD into the PC
+1793, 152, SYSCALL ISR (ADD STEPS HERE)
+1945, 1, IRET
+1946, 1, switch to kernel mode
+1947, 10, context saved
+1957, 1, find vector 7 in memory position 0x000E
+1958, 1, load address 0X00BD into the PC
+1959, 152, ENDIO ISR(ADD STEPS HERE)
+2111, 1, IRET
+2112, 1, switch to kernel mode
+2113, 10, context saved
+2123, 1, find vector 2 in memory position 0x0004
+2124, 1, load address 0X0695 into the PC
