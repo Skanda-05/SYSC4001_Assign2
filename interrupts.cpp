@@ -143,15 +143,11 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             ///////////////////////////////////////////////////////////////////////////////////////////
             //With the exec's trace (i.e. trace of external program), run the exec (HINT: think recursion)
 
-<<<<<<< Updated upstream
-
-=======
             auto [exec_execution, exec_status, total_time] = simulate_trace(exec_traces, current_time, vectors, delays, external_files, current, wait_queue);
             
             execution += exec_execution;
             system_status += exec_status;
             current_time = total_time;
->>>>>>> Stashed changes
 
             ///////////////////////////////////////////////////////////////////////////////////////////
 
