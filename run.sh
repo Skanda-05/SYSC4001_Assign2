@@ -1,1 +1,1 @@
-./bin/interrupts trace1.txt vector_table.txt device_table.txt external_files.txt
+./bin/interrupts trace.txt vector_table.txt device_table.txt external_files.txt
