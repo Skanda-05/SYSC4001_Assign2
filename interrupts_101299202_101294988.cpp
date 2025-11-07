@@ -237,9 +237,7 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             ///////////////////////////////////////////////////////////////////////////////////////////
 
             break; 
-            // Important because EXEC replaces the current process entirely, so we stop the loop to prevent continuing with the old process. 
-            // If there was no break, the loop would continue processing the old process's trace, which is wrong
-            // copy and state this in report. may need elaboration
+            
 
         }
     }
