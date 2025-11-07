@@ -10,7 +10,7 @@
 45, 10, context saved
 55, 1, find vector 3 in memory position 0x0006
 56, 1, load address 0X042B into the PC
-57,60The program size is 10MB 
+57,60, The program size is 10MB 
 117,150, loading program program1 into memory
 267, 3, marking partition as occupied
 270, 6, updating PCB
@@ -21,14 +21,14 @@
 328, 10, context saved
 338, 1, find vector 6 in memory position 0x000C
 339, 1, load address 0X0639 into the PC
-340, 265, call device driver
-605, 265, Transfer data
-870, 265, Check for errors
-1135, 1, IRET
-1136, 15, CPU Burst
-1151, 1, switch to kernel mode
-1152, 10, context saved
-1162, 1, find vector 6 in memory position 0x000C
-1163, 1, load address 0X0639 into the PC
-1164, 265, ENDIO ISR(ADD STEPS HERE)
-1429, 1, IRET
+340, 185, call device driver
+525, 40, Transfer data
+565, 40, Check for errors
+605, 1, IRET
+606, 15, CPU Burst
+621, 1, switch to kernel mode
+622, 10, context saved
+632, 1, find vector 6 in memory position 0x000C
+633, 1, load address 0X0639 into the PC
+634, 265, ENDIO ISR(ADD STEPS HERE)
+899, 1, IRET

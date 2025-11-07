@@ -28,15 +28,35 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             execution += intr;
             current_time = time;
 
-            execution += std::to_string(current_time) + ", " + std::to_string(delays[duration_intr]) + ", call device driver\n";
-            current_time += delays[duration_intr];
+
+
+            //ISR TIME:
+            unsigned int isr_time = delays[duration_intr];
+
+            unsigned int SYS_CALL_delay;
+            unsigned int ISR_activity_delay;
+            unsigned int ISR_activity_delay_2;
+
+            if(isr_time <= 90){
+                SYS_CALL_delay = isr_time / 5;
+                ISR_activity_delay = (isr_time-SYS_CALL_delay) / 2;
+                ISR_activity_delay_2 = isr_time - SYS_CALL_delay - ISR_activity_delay;
+            }
+            else{
+                SYS_CALL_delay = isr_time - 80;
+                ISR_activity_delay = 40;
+                ISR_activity_delay_2 = 40;
+            }
+
+            execution += std::to_string(current_time) + ", " + std::to_string(SYS_CALL_delay) + ", call device driver\n";
+            current_time += SYS_CALL_delay;
 
             //ISR Activity 1: Transfer data
-            execution += std::to_string(current_time) + ", " + std::to_string(delays[duration_intr]) + ", Transfer data\n";
-            current_time += delays[duration_intr];
+            execution += std::to_string(current_time) + ", " + std::to_string(ISR_activity_delay) + ", Transfer data\n";
+            current_time += ISR_activity_delay;
             //ISR Activity 2: Check for errors
-            execution += std::to_string(current_time) + ", " + std::to_string(delays[duration_intr]) + ", Check for errors\n";
-            current_time += delays[duration_intr];
+            execution += std::to_string(current_time) + ", " + std::to_string(ISR_activity_delay_2) + ", Check for errors\n";
+            current_time += ISR_activity_delay_2;
 
             execution +=  std::to_string(current_time) + ", 1, IRET\n";
             current_time += 1;
@@ -155,7 +175,7 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
                 std::cerr << "ERROR! Program not found!" << std::endl;
             }
             
-            execution += std::to_string(current_time) + "," + std::to_string(exec_duration) + "The program size is " + std::to_string(new_size) + "MB \n"; 
+            execution += std::to_string(current_time) + "," + std::to_string(exec_duration) + ", The program size is " + std::to_string(new_size) + "MB \n"; 
             current_time += exec_duration;
 
             unsigned int loading_time = new_size * 15; //15 time units per MB
@@ -248,6 +268,8 @@ int main(int argc, char** argv) {
 
     /******************ADD YOUR VARIABLES HERE*************************/
     
+
+
 
     /******************************************************************/
 
