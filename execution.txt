@@ -10,7 +10,7 @@
 45, 10, context saved
 55, 1, find vector 3 in memory position 0x0006
 56, 1, load address 0X042B into the PC
-57, 60, Program is 10 Mb large
+57, 60, The program size is 10MB 
 117, 150, loading program into memory
 267, 3, marking partition as occupied
 270, 6, updating PCB

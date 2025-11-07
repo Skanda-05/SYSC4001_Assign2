@@ -1,2 +1,1 @@
 ./bin/interrupts trace.txt vector_table.txt device_table.txt external_files.txt
-cat execution.txt

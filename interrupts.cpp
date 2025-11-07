@@ -148,7 +148,7 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
                 std::cerr << "ERROR! Program not found!" << std::endl;
             }
             
-            execution += std::to_string(current_time) + ", " + std::to_string(exec_duration) + "The program size is " + std::to_string(new_size) + "MB \n"; 
+            execution += std::to_string(current_time) + ", " + std::to_string(exec_duration) + ", The program size is " + std::to_string(new_size) + "MB \n"; 
             current_time += exec_duration;
 
             unsigned int load_time = new_size * 15;
