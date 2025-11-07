@@ -104,6 +104,28 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
 
             ///////////////////////////////////////////////////////////////////////////////////////////
             //Add your EXEC output here
+<<<<<<< Updated upstream
+=======
+            unsigned int exec_duration = duration_intr;
+
+            unsigned int new_size = get_size(program_name, external_files);
+            if  (new_size == -1) {
+                std::cerr << "ERROR! Program not found!" << std::endl;
+            }
+            
+            execution += std::to_string(current_time) + "," + std::to_string(exec_duration) + "The program size is " + std::to_string(new_size) + "MB \n"; 
+            current_time += exec_duration;
+
+            free(&current);
+
+            current.program_name = program_name;
+            current.size = new_size;
+
+            if (!allocate_memory(&current)) {
+                std::cerr << "ERROR! Memory allocation failed!" << program_name << std::endl;
+                exit(1);
+             }
+>>>>>>> Stashed changes
 
 
 
@@ -121,7 +143,15 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             ///////////////////////////////////////////////////////////////////////////////////////////
             //With the exec's trace (i.e. trace of external program), run the exec (HINT: think recursion)
 
+<<<<<<< Updated upstream
 
+=======
+            auto [exec_execution, exec_status, total_time] = simulate_trace(exec_traces, current_time, vectors, delays, external_files, current, wait_queue);
+            
+            execution += exec_execution;
+            system_status += exec_status;
+            current_time = total_time;
+>>>>>>> Stashed changes
 
             ///////////////////////////////////////////////////////////////////////////////////////////
 
