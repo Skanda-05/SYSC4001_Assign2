@@ -148,9 +148,9 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
 
             ///////////////////////////////////////////////////////////////////////////////////////////
             //Add your EXEC output here
-            int exec_duration = duration_intr;
+            unsigned int exec_duration = duration_intr;
 
-            int new_size = get_size(program_name, external_files);
+            unsigned int new_size = get_size(program_name, external_files);
             if  (new_size == -1) {
                 std::cerr << "ERROR! Program not found!" << std::endl;
             }
@@ -158,7 +158,12 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             execution += std::to_string(current_time) + "," + std::to_string(exec_duration) + "The program size is " + std::to_string(new_size) + "MB \n"; 
             current_time += exec_duration;
 
-            free(&current);
+            unsigned int loading_time = new_size * 15; //15 time units per MB
+            execution += std::to_string(current_time) + "," + std::to_string(loading_time) + ", loading program " + program_name + " into memory\n";
+            current_time += loading_time;
+
+
+            free_memory(&current);
 
             current.program_name = program_name;
             current.size = new_size;
@@ -167,27 +172,23 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
                 std::cerr << "ERROR! Memory allocation failed!" << program_name << std::endl;
                 exit(1);
              }
-
-             int loading_time = new_size * 15; //15 time units per MB
-             execution += std::to_string(current_time) + "," + std::to_string(loading_time) + ", loading program " + program_name + " into memory\n";
-             current_time += loading_time;
              
-             execution += std::to_string(current_time) + ", 3, marking partition as occupied\n";
-             current_time += 3;
+            execution += std::to_string(current_time) + ", 3, marking partition as occupied\n";
+            current_time += 3;
 
-             execution += std::to_string(current_time) + ", 6, updating PCB\n";
-             current_time += 6;
+            execution += std::to_string(current_time) + ", 6, updating PCB\n";
+            current_time += 6;
              
              // update system status
-             system_status += "time: " + std::to_string(current_time) + "; current trace: EXEC " + program_name + ", " + std::to_string(duration_intr) + "\n";
-             system_status += print_PCB(current, wait_queue);
+            system_status += "time: " + std::to_string(current_time) + "; current trace: EXEC " + program_name + ", " + std::to_string(duration_intr) + "\n";
+            system_status += print_PCB(current, wait_queue);
 
              // call routine scheduler
-             execution += std::to_string(current_time) + ", 0, scheduler called\n";
+            execution += std::to_string(current_time) + ", 0, scheduler called\n";
              
              // do the IRET
-             execution += std::to_string(current_time) + ", 1, IRET\n";
-             current_time += 1;
+            execution += std::to_string(current_time) + ", 1, IRET\n";
+            current_time += 1;
 
 
             ///////////////////////////////////////////////////////////////////////////////////////////
