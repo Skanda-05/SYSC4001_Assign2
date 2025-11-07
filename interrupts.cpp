@@ -28,7 +28,14 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             execution += intr;
             current_time = time;
 
-            execution += std::to_string(current_time) + ", " + std::to_string(delays[duration_intr]) + ", SYSCALL ISR (ADD STEPS HERE)\n";
+            execution += std::to_string(current_time) + ", " + std::to_string(delays[duration_intr]) + ", call device driver\n";
+            current_time += delays[duration_intr];
+
+            //ISR Activity 1: Transfer data
+            execution += std::to_string(current_time) + ", " + std::to_string(delays[duration_intr]) + ", Transfer data\n";
+            current_time += delays[duration_intr];
+            //ISR Activity 2: Check for errors
+            execution += std::to_string(current_time) + ", " + std::to_string(delays[duration_intr]) + ", Check for errors\n";
             current_time += delays[duration_intr];
 
             execution +=  std::to_string(current_time) + ", 1, IRET\n";
