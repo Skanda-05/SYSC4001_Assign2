@@ -141,14 +141,6 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
 
             ///////////////////////////////////////////////////////////////////////////////////////////
             //Add your EXEC output here
-
-        } else if(activity == "EXEC") {
-            auto [intr, time] = intr_boilerplate(current_time, 3, 10, vectors);
-            current_time = time;
-            execution += intr;
-
-            ///////////////////////////////////////////////////////////////////////////////////////////
-            //Add your EXEC output here
             unsigned int exec_duration = duration_intr;
 
             unsigned int new_size = get_size(program_name, external_files);
